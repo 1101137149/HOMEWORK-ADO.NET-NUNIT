@@ -49,16 +49,18 @@ namespace WebApplication1
         //ExecuteScalar
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            string sql = @"INSERT INTO [dbo].[student]([Name],[Age])
+            string sql = @"INSERT INTO [dbo].[student]([name],[age])
                              VALUES
-                               (@Name
-                               ,@Age);SELECT CAST(scope_identity() AS int);";
+                               (@name
+                               ,@age);SELECT CAST(scope_identity() AS int);";
             using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["mydataConnectionString"].ConnectionString))
             {
                 cn.Open();
                 using (SqlCommand cmd = cn.CreateCommand())
                 {
+                    
                     cmd.CommandText = sql;
+                    cmd.Parameters.Add(new SqlParameter("@id", txtId.Text));
                     cmd.Parameters.Add(new SqlParameter("@name", txtName.Text));
                     cmd.Parameters.Add(new SqlParameter("@age", txtAge.Text));
 
@@ -75,17 +77,17 @@ namespace WebApplication1
         /// <param name="e"></param>
         protected void btnEdit_Click(object sender, EventArgs e)
         {
-            string sql = @"update [student] set [Name] = @Name, [Age] = @Age
-                             where id = @ID";
+            string sql = @"update [student] set [name] = @name, [age] = @age
+                             where id = @id";
             using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["mydataConnectionString"].ConnectionString))
             {
                 cn.Open();
                 using (SqlCommand cmd = cn.CreateCommand())
                 {
                     cmd.CommandText = sql;
-                    cmd.Parameters.Add(new SqlParameter("@ID", txtE_ID.Text));
-                    cmd.Parameters.Add(new SqlParameter("@Name", txtE_Name.Text));
-                    cmd.Parameters.Add(new SqlParameter("@Age", txtE_Age.Text));
+                    cmd.Parameters.Add(new SqlParameter("@id", txtE_ID.Text));
+                    cmd.Parameters.Add(new SqlParameter("@name", txtE_Name.Text));
+                    cmd.Parameters.Add(new SqlParameter("@age", txtE_Age.Text));
 
                     cmd.ExecuteNonQuery();
                 }
