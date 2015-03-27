@@ -60,7 +60,7 @@ namespace WebApplication1
                 {
                     
                     cmd.CommandText = sql;
-                    cmd.Parameters.Add(new SqlParameter("@id", txtId.Text));
+                    //cmd.Parameters.Add(new SqlParameter("@id", txtId.Text));
                     cmd.Parameters.Add(new SqlParameter("@name", txtName.Text));
                     cmd.Parameters.Add(new SqlParameter("@age", txtAge.Text));
 
