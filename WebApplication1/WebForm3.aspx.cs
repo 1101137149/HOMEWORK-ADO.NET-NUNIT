@@ -64,9 +64,9 @@ namespace WebApplication1
                         da.Fill(ds);
                         DataTable dt = ds.Tables["Table"];
                         DataRow dr = dt.NewRow();
-                        dr["id"] = txtId.Text;
-                        dr["name"] = txtName.Text;
-                        dr["age"] = txtAge.Text;
+                        dr["Id"] = txtId.Text;
+                        dr["Name"] = txtName.Text;
+                        dr["Age"] = txtAge.Text;
                         dt.Rows.Add(dr);
                         da.Update(dt);
 
@@ -96,11 +96,12 @@ namespace WebApplication1
                         ds.Clear();
                         da.Fill(ds);
                         DataTable dt = ds.Tables[0];
-                        DataRow dr = dt.Select(string.Format("id = {0}", txtE_ID.Text)).First();
+                        DataRow dr = dt.Select(string.Format("Id = {0}", txtE_ID.Text)).First();
                         
-                        dr["id"] = txtE_ID.Text;
+                        dr["Id"] = txtE_ID.Text;
                         dr["Name"] = txtE_Name.Text;
                         dr["Age"] = txtE_Age.Text;
+                        
                         da.Update(dt);
 
                         btnSearch_Click(null, null);
@@ -129,7 +130,7 @@ namespace WebApplication1
                         ds.Clear();
                         da.Fill(ds);
                         DataTable dt = ds.Tables[0];
-                        DataRow dr = dt.Select(string.Format("id = {0}", txtD_ID.Text)).First();
+                        DataRow dr = dt.Select(string.Format("Id = {0}", txtD_ID.Text)).First();
                         dr.Delete();
                         da.Update(dt);
 
