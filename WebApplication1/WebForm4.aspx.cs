@@ -59,8 +59,8 @@ namespace WebApplication1
                 using (SqlCommand cmd = cn.CreateCommand())
                 {
                     cmd.CommandText = sql;
-                    cmd.Parameters.Add(new SqlParameter("@Name", txtName.Text));
-                    cmd.Parameters.Add(new SqlParameter("@Age", txtAge.Text));
+                    cmd.Parameters.Add(new SqlParameter("@name", txtName.Text));
+                    cmd.Parameters.Add(new SqlParameter("@age", txtAge.Text));
 
                     txtID.Text = cmd.ExecuteScalar().ToString();
                 }
