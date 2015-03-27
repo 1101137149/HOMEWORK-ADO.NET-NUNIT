@@ -18,11 +18,11 @@ namespace WebApplication1.Tests
         [TestFixtureSetUp]
         public void Initial()
         {
-            string sql = @"INSERT INTO [dbo].[Employees]([Name],[Age])
+            string sql = @"INSERT INTO [dbo].[student]([Name],[Age])
                              VALUES
                                (@Name
                                ,@Age);SELECT CAST(scope_identity() AS int);";
-            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["ADODBConnectionString"].ConnectionString))
+            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["mydataConnectionString"].ConnectionString))
             {
                 cn.Open();
                 using (SqlCommand cmd = cn.CreateCommand())
@@ -41,12 +41,12 @@ namespace WebApplication1.Tests
         [Test]
         public void TestAdd()
         {
-            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["ADODBConnectionString"].ConnectionString))
+            using (SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["mydataConnectionString"].ConnectionString))
             {
                 cn.Open();
                 using (SqlCommand cmd = cn.CreateCommand())
                 {
-                    cmd.CommandText = "select Max(EmployeeID) from employees";
+                    cmd.CommandText = "select Max(id) from student";
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
                         while ((dr.Read()))
